@@ -12,7 +12,7 @@ from models.review import Review
 from models import storage
 
 
-@app_views.route('/status', strict_slashes=False)
+@app_views.route('api/v1/status', strict_slashes=False)
 def status():
     """ returns a json """
     return jsonify({"status": "OK"})
