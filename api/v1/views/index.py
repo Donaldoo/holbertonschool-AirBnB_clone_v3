@@ -27,6 +27,6 @@ def stats():
     stats = {}
 
     for index in range(len(classes)):
-        stats[names[index]] = self.storage.count(classes[index])
+        stats[names[index]] = storage.count(classes[index])
 
     return jsonify(stats)
