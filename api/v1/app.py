@@ -15,6 +15,7 @@ def teardown(self):
     """ closes current sqlalchemy session """
     storage.close()
 
+
 @app.errorhandler(404)
 def error_404(self):
     """ handles not found error """
