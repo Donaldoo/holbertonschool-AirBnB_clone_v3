@@ -20,7 +20,7 @@ def get_all():
                  strict_slashes=False)
 def get_id(state_id):
     """gets a specific state with id"""
-    state = storage.get(State.values(), state_id)
+    state = storage.get("State", state_id)
     if state is None:
         abort(404)
         return jsonify(state.to_dict())
@@ -29,7 +29,7 @@ def get_id(state_id):
                  strict_slashes=False)
 def delete_id(state_id):
     """deletes a state from it's id"""
-    state = storage.get(State.values(), state_id)
+    state = storage.get("State", state_id)
     if state is None:
         abort(404)
         state.delete()
@@ -51,7 +51,7 @@ def create_state():
                  strict_slashes=False)
 def update_state(state_id):
     """updates an existing state"""
-    state = storage.get(State.values(), state_id)
+    state = storage.get("State", state_id)
     if state is None:
         abort(404)
         if not request.get_json():
