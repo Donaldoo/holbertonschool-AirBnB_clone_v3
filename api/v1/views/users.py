@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """User object that handles all default RESTFul API actions"""
+
 from api.v1.views import app_views
 from flask import abort, jsonfy, make_response, request
 from models import storage
@@ -23,6 +24,18 @@ def get_user(user_id):
     if user is None:
         abort(404)
     return jsonify(user.to_dict())
+
+
+@app_views.route('/users/<string:user_id>', methods=['DELETE'],
+                 strict_slashes=False)
+def delete_user(user_id):
+    """deletes a user based on id"""
+    user = storage.get("User", user_id)
+    if user is None:
+        abort(404)
+    user.delete()
+    storage.save()
+    return (jsonify({}))
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
