@@ -2,8 +2,7 @@
 """New view for State objects to handle RestApi states.py"""
 
 from api.v1.views import app_views
-from flask import jsonify, make_response, request
-from flask.ext.restful import abort
+from flask import abort, jsonify, make_response, request
 from models import storage
 from models.state import State
 
