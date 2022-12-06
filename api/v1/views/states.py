@@ -43,11 +43,11 @@ def create_state():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in request.get_json():
         return make_response(jsonify({'error': 'Missing name'}), 400)
-    state = State(request.get_json())
+    state = State(**request.get_json())
     state.save()
     return make_response(jsonify(state.to_dict()), 201)
 
-@app_views.route('states/<string:state_id>', methods=['PUT'],
+@app_views.route('/states/<string:state_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_state(state_id):
     """updates an existing state"""
