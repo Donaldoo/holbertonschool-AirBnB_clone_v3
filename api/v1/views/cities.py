@@ -50,8 +50,9 @@ def post_city(state_id):
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in request.get_json():
         return make_response(jsonify({'error': 'Missing name'}), 400)
-    request.get_json(['state_id']) = state_id
-    city = City(**request.get_json(['state_id']))
+    var = request.get_json()
+    var['state_id'] = state_id
+    city = City(**var)
     city.save()
     return make_response(jsonify(city.to_dict()), 201)
 
