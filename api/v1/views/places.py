@@ -9,7 +9,7 @@ from models.place import Place
 from models.user import User
 
 
-@app_views.route('/cities/<string:city_id>/places', methods=['GET'],
+@app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def get_places(city_id):
     """gets place info for all places i a specific city"""
@@ -22,7 +22,7 @@ def get_places(city_id):
     return jsonify(places)
 
 
-@app_views.route('/places/<string:place_id>', methods=['GET'],
+@app_views.route('/places/<place_id>', methods=['GET'],
                  strict_slashes=False)
 def get_place(place_id):
     """get place info for a specific place_id"""
