@@ -21,9 +21,16 @@ def status():
 @app_views.route('/stats', strict_slashes=False)
 def stats():
     """ retrives the number of each class objects """
-    classes = [Amenity, City, Place, Review, States, User]
+    classes = [Amenity, City, Place, Review, State, User]
     names = ["amenities", "cities", "places", "reviews", "states", "users"]
 
+    """
+    classDict = {"amenities" : Amenity,
+                 "cities": City,
+                 "places": Place,
+                 "reviews": Review,
+                 "states": Stat
+            }"""
     stats = {}
 
     for index in range(len(classes)):
