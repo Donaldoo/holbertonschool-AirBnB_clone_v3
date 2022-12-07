@@ -19,6 +19,7 @@ import os
 import pep8
 import unittest
 FileStorage = file_storage.FileStorage
+storage = models.storage
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
@@ -114,15 +115,23 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
-                     "not testing db storage")
+
+@unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
+                 'skip if environ is not db')
+class TestStorageGetCount(unittest.TestCase):
+    """ test get and count methods"""
+
+    @classmethod
+    def setUp(self):
+        """setup class"""
+        self.state = models.state.State(name="Alb")
+        self.state.save()
+
     def test_get(self):
         """ test get method"""
         res = storage.get(cls="State", id=str(self.state.id))
-        self.assertEqual(self.state.id, result.id)
+        self.assertEqual(self.state.id, res.id)
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
-                     "not testing db storage")
     def test_count(self):
         """test count method"""
         res = storage.count()
