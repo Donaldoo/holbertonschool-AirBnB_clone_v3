@@ -91,12 +91,12 @@ class TestFileStorage(unittest.TestCase):
                      "not testing db storage")
     def test_get(self):
         """ test get method"""
-        res = storage.get(cls="State", id=str(self.state.id))
+        res = models.storage.get(cls="State", id=str(self.state.id))
         self.assertEqual(self.state.id, result.id)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "not testing db storage")
     def test_count(self):
         """test count method"""
-        res = storage.count()
-        self.assertEqual(len(storage.all()), res)
+        res = models.storage.count()
+        self.assertEqual(len(models.storage.all()), res)
